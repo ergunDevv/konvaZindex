@@ -74,6 +74,7 @@ export interface NodeConfig {
   preventDefault?: boolean;
   globalCompositeOperation?: globalCompositeOperationType;
   filters?: Array<Filter>;
+  zOrder?: number;
 }
 
 // CONSTANTS
@@ -2659,6 +2660,7 @@ export abstract class Node<Config extends NodeConfig = NodeConfig> {
 
   rotation: GetSet<number, this>;
   zIndex: GetSet<number, this>;
+  zOrder: GetSet<number, this>;
 
   scale: GetSet<Vector2d | undefined, this>;
   scaleX: GetSet<number, this>;
@@ -3320,6 +3322,7 @@ addGetterSetter(Node, 'dragBoundFunc');
  * node.draggable(false);
  */
 addGetterSetter(Node, 'draggable', false, getBooleanValidator());
+addGetterSetter(Node, 'zOrder', 0, getNumberValidator());
 
 Factory.backCompat(Node, {
   rotateDeg: 'rotate',
